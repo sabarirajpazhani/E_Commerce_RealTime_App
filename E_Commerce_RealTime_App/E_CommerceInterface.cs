@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace E_Commerce_Console_App_RealTime
         void AdminLogin();
         void isNullString(string student_Name);
         void isValidString(string student_Name);
-
+        void DisplayAllProducts(Hashtable ProductDetails);
     }
 
     public class E_CommerceMethods : E_CommerceInterface
@@ -34,6 +35,48 @@ namespace E_Commerce_Console_App_RealTime
             {
                 throw new IsValidStringExpection("Name must contains alphabets only not number and special characters");
             }
+        }
+
+        public void DisplayAllProducts(Hashtable ProductDetails)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Console.ResetColor();
+            Console.WriteLine(
+                $"{"Product ID",-15}" +
+                $"{"Product Name",-25}" +
+                $"{"Product Category",-25}" +
+                $"{"Product Price",-20}" +
+                $"{"Product Stock",-15}"
+            );
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Console.WriteLine();
+            Console.ResetColor();
+
+            foreach (DictionaryEntry i in ProductDetails)
+            {
+                var _Product = (Product)i.Value;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write($"{_Product.Product_ID,-15}");
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{_Product.ProductName,-25}");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write($"{_Product.ProductCategory,-25}");
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{_Product.ProductPrice,-20}");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"{_Product.Stock,-15}");
+            }
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            Console.WriteLine();
+
         }
 
         public void AdminLogin()
