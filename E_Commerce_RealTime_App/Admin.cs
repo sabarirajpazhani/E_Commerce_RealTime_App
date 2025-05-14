@@ -24,7 +24,7 @@ namespace E_Commerce_RealTime_App
             this.ProductName = ProductName;
             this.ProductCategory = ProductCategory;
             this.ProductPrice = ProductPrice;
-            this.Stock = Stock;
+            this.Stock = Stock; 
             this.ProductDescription = ProductDescription;
         }
 
