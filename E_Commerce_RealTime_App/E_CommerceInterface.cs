@@ -3,18 +3,39 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using E_Commerce_RealTime_App;
+using E_Commerce_RealTime_App.Exceptions;
 
 namespace E_Commerce_Console_App_RealTime
 {
     internal interface E_CommerceInterface
     {
         void AdminLogin();
+        void isNullString(string student_Name);
+        void isValidString(string student_Name);
+
     }
 
     public class E_CommerceMethods : E_CommerceInterface
     {
+        public void isNullString(string student_Name)
+        {
+            if (string.IsNullOrWhiteSpace(student_Name))
+            {
+                throw new IsNullExpection("Name cannot be Empty");
+            }
+        }
+
+        public void isValidString(string student_Name)
+        {
+            if (!Regex.IsMatch(student_Name, @"^[a-zA-Z .]+$"))
+            {
+                throw new IsValidStringExpection("Name must contains alphabets only not number and special characters");
+            }
+        }
+
         public void AdminLogin()
         {
             string AdminFilePath = @"D:\FileHandling\E_Commerce\Admin.txt";
