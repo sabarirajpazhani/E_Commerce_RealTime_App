@@ -13,12 +13,12 @@ namespace E_Commerce_RealTime_App
     {
         public int Product_ID { get; set; } 
         public string ProductName { get; set; } 
-        public intProductCategory {  get; set; }   
+        public string ProductCategory {  get; set; }   
         public int ProductPrice { get; set; }   
         public int Stock { get; set; }
         public string ProductDescription { get; set; }
 
-        public Product(int Product_ID, string ProductName, int ProductCategory, int ProductPrice, int Stock, string ProductDescription)
+        public Product(int Product_ID, string ProductName, string ProductCategory, int ProductPrice, int Stock, string ProductDescription)
         {
             this.Product_ID = Product_ID;
             this.ProductName = ProductName;
@@ -28,8 +28,9 @@ namespace E_Commerce_RealTime_App
             this.ProductDescription = ProductDescription;
         }
 
-        void DisplayProduct(int Product_ID, string ProductName, int ProductCategory, int ProductPrice, int Stock)
+        public void DisplayProduct(int Product_ID, string ProductName, string ProductCategory, int ProductPrice, int Stock)
         {
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("                              --------- Newly Registed Products ---------                              ");
             Console.ResetColor();
@@ -65,7 +66,7 @@ namespace E_Commerce_RealTime_App
     }
     internal class Admin
     {
-        public static int Product_ID = 100;
+        public static int product_ID = 100;
         public void AdminPanel()
         {
             E_CommerceInterface _E_CommerceMethods = new E_CommerceMethods();
@@ -76,10 +77,11 @@ namespace E_Commerce_RealTime_App
 
             while (true)
             {
-                Console.Clear();
+                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("------------------------------------------- ** Admin Panel ** -----------------------------------------");
                 Console.ResetColor();
+                Console.WriteLine();
                 Console.WriteLine("                                            1. Add the Products                                        ");
                 Console.WriteLine("                                            2. Update the Product                                      ");
                 Console.WriteLine("                                            3. Delete the Product                                      ");
@@ -134,6 +136,7 @@ namespace E_Commerce_RealTime_App
                     goto Choice;
                 }
 
+                int Product_ID = 0;
                 string ProductName = "None";
                 string ProductCategory = "None";
                 int ProductPrice = 0;
@@ -145,6 +148,7 @@ namespace E_Commerce_RealTime_App
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("                           You have selected option '1' to add a new product                           ");
                         Console.ResetColor();
+                        Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("-------------------------------------------------------------------------------------------------------");
                         Console.ResetColor();
@@ -195,7 +199,7 @@ namespace E_Commerce_RealTime_App
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Enter the Category Number : ");
+                            Console.Write("Enter the Category Number : ");
                             Console.ResetColor();
                             int categoryNumber = int.Parse(Console.ReadLine());
 
@@ -234,7 +238,7 @@ namespace E_Commerce_RealTime_App
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Enter the Product Price : ");
+                            Console.Write("Enter the Product Price : ");
                             Console.ResetColor();
                             int productPrice = int.Parse(Console.ReadLine());
 
@@ -267,7 +271,7 @@ namespace E_Commerce_RealTime_App
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Enter the Product Stock : ");
+                            Console.Write("Enter the Product Stock : ");
                             Console.ResetColor();
                             int stock= int.Parse(Console.ReadLine());
 
@@ -308,14 +312,75 @@ namespace E_Commerce_RealTime_App
                         Console.WriteLine($"                       --------------------------------------------------------                       ");
                         Console.ResetColor();
 
-                        Product_ID++;
+                        product_ID++;
+                        Product_ID = product_ID;
 
                         Product products = new Product(Product_ID, ProductName, ProductCategory, ProductPrice, Stock, ProductDescription);
 
+                        products.DisplayProduct(Product_ID, ProductName, ProductCategory, ProductPrice, Stock);
+
+                        ProductDetails.Add(Product_ID, products);
+                        Console.WriteLine();
+                        break;
 
 
 
 
+                    case 4:
+
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                           You have selected option '4' to View all Products                           ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                                      Here are all the products                                         ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+                        Console.ResetColor();
+                        Console.WriteLine(
+                            $"{"Product ID",-15}" +
+                            $"{"Product Name",-25}" +
+                            $"{"Product Category",-25}" +
+                            $"{"Product Price",-20}" +
+                            $"{"Product Stock",-15}"
+                        );
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine();
+                        Console.ResetColor();
+
+                        foreach(DictionaryEntry i in ProductDetails)
+                        {
+                            var _Product =(Product) i.Value;
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{_Product.Product_ID,-15}");
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write($"{_Product.ProductName,-25}");
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{_Product.ProductCategory,-25}");
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write($"{_Product.ProductPrice,-20}");
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine($"{_Product.Stock,-15}");
+                        }
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine();
+
+                        break;
                 }
 
             }

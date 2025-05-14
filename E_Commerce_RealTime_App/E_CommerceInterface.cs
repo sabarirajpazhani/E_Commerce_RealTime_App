@@ -75,8 +75,6 @@ namespace E_Commerce_Console_App_RealTime
 
                             Admin _admin = new Admin();
                             _admin.AdminPanel();
-
-
                         }
                         else
                         {
@@ -106,3 +104,5 @@ namespace E_Commerce_Console_App_RealTime
         }
     }
 }
+
+
