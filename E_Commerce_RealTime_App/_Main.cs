@@ -87,6 +87,10 @@ namespace E_Commerce_RealTime_App
                     case 1:
                         _E_CommerceMethod.AdminLogin();
                         break;
+
+                    case 3:
+                        _E_CommerceMethod.UserRegistration();
+                        break;
                 }
 
             }
