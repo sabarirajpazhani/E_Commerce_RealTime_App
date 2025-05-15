@@ -66,12 +66,98 @@ namespace E_Commerce_RealTime_App
     internal class Admin
     {
         public static int product_ID = 100;
+
+        public static Hashtable ProductDetails = new Hashtable()
+        {
+            {
+                101, new Product(
+                    101,
+                    "Wireless Mouse",
+                    "Electronics",
+                    799,
+                    25,
+                    "Ergonomic wireless mouse with 2.4GHz connectivity and silent clicks."
+                )
+            },
+            {
+                102, new Product(
+                    102,
+                    "Bluetooth Headphones",
+                    "Electronics",
+                    1599,
+                    30,
+                    "Over-ear Bluetooth headphones with deep bass and 20 hours of battery life."
+                )
+            },
+            {
+                103, new Product(
+                    103,
+                    "Mens Casual Shirt",
+                    "Fashion",
+                    1199,
+                    40,
+                    "Cotton slim-fit casual shirt for men, available in multiple colors."
+                )
+            },
+            {
+                104, new Product(
+                    104,
+                    "Non stick Cookware Set",
+                    "Home & Kitchen",
+                    2499,
+                    15,
+                    "5-piece non-stick cookware set with lids, ideal for healthy cooking."
+                )
+            },
+            {
+                105, new Product(
+                    105,
+                    "Face Wash Gel",
+                    "Beauty & Personal Care",
+                    349,
+                    50,
+                    "Gentle foaming gel with vitamin C for daily skincare routine."
+                )
+            },
+            {
+                106, new Product(
+                    106,
+                    "Digital Thermometer",
+                    "Health & Wellness",
+                    299,
+                    60,
+                    "Accurate digital thermometer with fast readings and memory function."
+                )
+            },
+            {
+                107, new Product(
+                    107,
+                    "Self Help Book",
+                    "Books & Stationary",
+                    599,
+                    100,
+                    "Transform your habits and life with proven techniques from James Clear."
+                )
+            },
+            {
+                108, new Product(
+                    108,
+                    "Yoga Mat",
+                    "Sports & Outdoors",
+                    899,
+                    35,
+                    "Non-slip yoga mat with comfortable cushioning and carrying strap."
+                )
+            }
+        };
+    
+
         public void AdminPanel()
         {
             E_CommerceInterface _E_CommerceMethods = new E_CommerceMethods();
 
             List<string> Category = new List<string> { "Electronics", "Fashion", "Home & Kitchen", "Beauty & Personal Care", "Health & Wellness", "Books & Stationary", "Sports & Outdoors" };
-            Hashtable ProductDetails = new Hashtable();
+            
 
 
             while (true)
@@ -690,12 +776,6 @@ namespace E_Commerce_RealTime_App
                         _E_CommerceMethods.DisplayAllProducts(ProductDetails);
 
                         break;
-
-
-
-
-
-
 
                     case 6:
                         Console.WriteLine();
