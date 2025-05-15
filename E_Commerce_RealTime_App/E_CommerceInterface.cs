@@ -39,6 +39,8 @@ namespace E_Commerce_Console_App_RealTime
 
         public void DisplayAllProducts(Hashtable ProductDetails)
         {
+            var SortedProducts = ProductDetails.Cast<DictionaryEntry>().OrderBy(x => x.Key);
+
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("-------------------------------------------------------------------------------------------------------");
             Console.ResetColor();
@@ -54,7 +56,7 @@ namespace E_Commerce_Console_App_RealTime
             Console.WriteLine();
             Console.ResetColor();
 
-            foreach (DictionaryEntry i in ProductDetails)
+            foreach (DictionaryEntry i in SortedProducts)
             {
                 var _Product = (Product)i.Value;
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -89,7 +91,7 @@ namespace E_Commerce_Console_App_RealTime
             Console.WriteLine("                                 --------->> Welcome Admin <<---------                                 ");
             Console.ResetColor();
             Console.WriteLine();
-            AdminUserName:
+        AdminUserName:
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Enter the User Admin Name : ");
             Console.ResetColor();
@@ -103,7 +105,7 @@ namespace E_Commerce_Console_App_RealTime
                     string[] admin = i.Split(',');
                     if (admin[0] == AdminUserName)
                     {
-                        Password:
+                    Password:
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("Enter Admin Password : ");
                         Console.ResetColor();
@@ -126,7 +128,7 @@ namespace E_Commerce_Console_App_RealTime
                             Console.ResetColor();
                             goto Password;
                         }
-                       
+
                     }
                     else
                     {
@@ -147,5 +149,3 @@ namespace E_Commerce_Console_App_RealTime
         }
     }
 }
-
-

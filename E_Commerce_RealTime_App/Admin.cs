@@ -11,10 +11,10 @@ namespace E_Commerce_RealTime_App
 {
     class Product
     {
-        public int Product_ID { get; set; } 
-        public string ProductName { get; set; } 
-        public string ProductCategory {  get; set; }   
-        public int ProductPrice { get; set; }   
+        public int Product_ID { get; set; }
+        public string ProductName { get; set; }
+        public string ProductCategory { get; set; }
+        public int ProductPrice { get; set; }
         public int Stock { get; set; }
         public string ProductDescription { get; set; }
 
@@ -24,7 +24,7 @@ namespace E_Commerce_RealTime_App
             this.ProductName = ProductName;
             this.ProductCategory = ProductCategory;
             this.ProductPrice = ProductPrice;
-            this.Stock = Stock; 
+            this.Stock = Stock;
             this.ProductDescription = ProductDescription;
         }
 
@@ -71,8 +71,8 @@ namespace E_Commerce_RealTime_App
         {
             E_CommerceInterface _E_CommerceMethods = new E_CommerceMethods();
 
-            List<string> Category = new List<string>{"Electrocs", "Fashion", "Home & Kitchen", "Beauty & Personal Care","Health & Wellness","Books & Stationary" ,"Sports & Outdoors"};
-            Hashtable ProductDetails = new Hashtable(); 
+            List<string> Category = new List<string> { "Electronics", "Fashion", "Home & Kitchen", "Beauty & Personal Care", "Health & Wellness", "Books & Stationary", "Sports & Outdoors" };
+            Hashtable ProductDetails = new Hashtable();
 
 
             while (true)
@@ -95,7 +95,7 @@ namespace E_Commerce_RealTime_App
                 Console.WriteLine();
 
                 int Choice = 0;
-                Choice:
+            Choice:
                 try
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -154,7 +154,7 @@ namespace E_Commerce_RealTime_App
                         Console.ResetColor();
                         Console.WriteLine();
 
-                        ProductName:
+                    ProductName:
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
@@ -185,7 +185,7 @@ namespace E_Commerce_RealTime_App
                         Console.ResetColor();
                         Console.WriteLine();
                         int sno = 1;
-                        foreach(string i in Category)
+                        foreach (string i in Category)
                         {
                             Console.WriteLine($"                                  {sno}. {i}");
                             sno++;
@@ -195,7 +195,7 @@ namespace E_Commerce_RealTime_App
                         Console.WriteLine("                              ---------------------------------------------");
                         Console.ResetColor();
 
-                        CategoryNumber:
+                    CategoryNumber:
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
@@ -210,7 +210,7 @@ namespace E_Commerce_RealTime_App
                                 Console.ResetColor();
                                 goto CategoryNumber;
                             }
-                            if(categoryNumber > 7)
+                            if (categoryNumber > 7)
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Invalid Category Number! Category Number must be between 1 and 7");
@@ -224,14 +224,14 @@ namespace E_Commerce_RealTime_App
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Invalid Category Number! Input must not contain characters, symbols, or whitespace");
                             Console.ResetColor();
-                            goto Choice;
+                            goto CategoryNumber;
                         }
                         catch (OverflowException e)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Invalid Category Number! Please Enter the Valid Category Number");
                             Console.ResetColor();
-                            goto Choice;
+                            goto CategoryNumber;
                         }
 
                     ProductPrice:
@@ -273,7 +273,7 @@ namespace E_Commerce_RealTime_App
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write("Enter the Product Stock : ");
                             Console.ResetColor();
-                            int stock= int.Parse(Console.ReadLine());
+                            int stock = int.Parse(Console.ReadLine());
 
                             if (stock == 0)
                             {
@@ -334,6 +334,14 @@ namespace E_Commerce_RealTime_App
                         Console.ResetColor();
                         Console.WriteLine();
 
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                                   ------- Here the Products -------                                 ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        _E_CommerceMethods.DisplayAllProducts(ProductDetails);
+
                     Product_ID:
                         try
                         {
@@ -368,89 +376,253 @@ namespace E_Commerce_RealTime_App
 
                         if (ProductDetails.ContainsKey(Product_ID))
                         {
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Console.WriteLine("                               ------- Choose an option to Update -------                            ");
-                            Console.ResetColor();
-                            Console.WriteLine("                                 1. Press '1' to Update the Product Name                             ");
-                            Console.WriteLine("                                 2. Press '2' to Update the Product Category                         ");
-                            Console.WriteLine("                                 3. Press '3' to Update the Product Price                            ");
-                            Console.WriteLine("                                 4. Press '4' to Update the Product Stock                            ");
-                            Console.WriteLine("                                 5. Exit                                                             ");
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Console.WriteLine("                               -------------------------------------------                           ");
-                            Console.ResetColor();
-                            Console.WriteLine();
-
-                            option:
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write("Enter the Option to Update : ");
-                            Console.ResetColor();
-                            int option = int.Parse(Console.ReadLine());
-
-                            if(option == 0)
+                            while (true)
                             {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Invalid Option! Option must not be Zero. Re-Entet the Option Again");
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("                               ------- Choose an option to Update -------                            ");
                                 Console.ResetColor();
-                                goto option;
-                            }
-                            if(option > 5)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Invalid Option! Option must be between 1 and 6");
-                                Console.ResetColor();
-                                goto option;
-                            }
-
-                            Console.WriteLine();
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.WriteLine("                                   ------- Here the Products -------                                 ");
-                            Console.ResetColor();
-                            Console.WriteLine();
-
-                            _E_CommerceMethods.DisplayAllProducts(ProductDetails);
-
-
-                            if (option == 1)
-                            {
-                                string UpdatedProdName = "None";
-                                UpdatedProdName:
-                                try
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.Write("Enter the Updated Product Name : ");
-                                    Console.ResetColor();
-                                    string updatedProdName = Console.ReadLine();
-                                    _E_CommerceMethods.isNullString(updatedProdName);
-                                    _E_CommerceMethods.isValidString(updatedProdName);
-                                    UpdatedProdName = updatedProdName;
-                                }
-                                catch (IsNullExpection e)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine(e.Message);
-                                    Console.ResetColor();
-                                    goto UpdatedProdName;
-                                }
-                                catch (IsValidStringExpection e)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine(e.Message);
-                                    Console.ResetColor();
-                                    goto UpdatedProdName;
-                                }
-
-                                if (ProductDetails[Product_ID] is Product p)
-                                {
-                                    p.ProductName = UpdatedProdName;
-                                }
-
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.WriteLine("Product Name has been Successfully Updated :)");
+                                Console.WriteLine("                                 1. Press '1' to Update the Product Name                             ");
+                                Console.WriteLine("                                 2. Press '2' to Update the Product Category                         ");
+                                Console.WriteLine("                                 3. Press '3' to Update the Product Price                            ");
+                                Console.WriteLine("                                 4. Press '4' to Update the Product Stock                            ");
+                                Console.WriteLine("                                 5. Exit                                                             ");
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("                               -------------------------------------------                           ");
                                 Console.ResetColor();
                                 Console.WriteLine();
+
+                            option:
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("Enter the Option to Update : ");
+                                Console.ResetColor();
+                                int option = int.Parse(Console.ReadLine());
+
+                                if (option == 0)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Invalid Option! Option must not be Zero. Re-Entet the Option Again");
+                                    Console.ResetColor();
+                                    goto option;
+                                }
+                                if (option > 5)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Invalid Option! Option must be between 1 and 6");
+                                    Console.ResetColor();
+                                    goto option;
+                                }
+
+
+                                if (option == 1)
+                                {
+                                    string UpdatedProdName = "None";
+                                UpdatedProdName:
+                                    try
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.Write("Enter the Updated Product Name : ");
+                                        Console.ResetColor();
+                                        string updatedProdName = Console.ReadLine();
+                                        _E_CommerceMethods.isNullString(updatedProdName);
+                                        _E_CommerceMethods.isValidString(updatedProdName);
+                                        UpdatedProdName = updatedProdName;
+                                    }
+                                    catch (IsNullExpection e)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(e.Message);
+                                        Console.ResetColor();
+                                        goto UpdatedProdName;
+                                    }
+                                    catch (IsValidStringExpection e)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(e.Message);
+                                        Console.ResetColor();
+                                        goto UpdatedProdName;
+                                    }
+
+                                    if (ProductDetails[Product_ID] is Product p)
+                                    {
+                                        p.ProductName = UpdatedProdName;
+                                    }
+
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.WriteLine("Product Name has been Successfully Updated :)");
+                                    Console.ResetColor();
+                                    Console.WriteLine();
+                                }
+                                else if (option == 2)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                    Console.WriteLine("                              -------- Choose the Product Category --------                            ");
+                                    Console.ResetColor();
+                                    Console.WriteLine();
+                                    int Sno = 1;
+                                    foreach (string i in Category)
+                                    {
+                                        Console.WriteLine($"                                  {Sno}. {i}");
+                                        Sno++;
+                                    }
+                                    Console.WriteLine();
+                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                    Console.WriteLine("                              ---------------------------------------------");
+                                    Console.ResetColor();
+
+                                UpdatedCategoryNumber:
+                                    string UpdatedCategory = "None";
+                                    try
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.Write("Enter the Updated Category Number : ");
+                                        Console.ResetColor();
+                                        int updatedCategoryNumber = int.Parse(Console.ReadLine());
+
+                                        if (updatedCategoryNumber == 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("Invalid Category Number! Category Number must not be Zero");
+                                            Console.ResetColor();
+                                            goto UpdatedCategoryNumber;
+                                        }
+                                        if (updatedCategoryNumber > 7)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("Invalid Category Number! Category Number must be between 1 and 7");
+                                            Console.ResetColor();
+                                            goto UpdatedCategoryNumber;
+                                        }
+                                        UpdatedCategory = Category[updatedCategoryNumber - 1];
+
+                                        if (ProductDetails[Product_ID] is Product p)
+                                        {
+                                            p.ProductCategory = UpdatedCategory;
+                                        }
+                                        Console.ForegroundColor = ConsoleColor.Blue;
+                                        Console.WriteLine("Product Category has been Successfully Updated :)");
+                                        Console.ResetColor();
+                                        Console.WriteLine();
+                                    }
+                                    catch (FormatException)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("Invalid Category Number! Input must not contain characters, symbols, or whitespace");
+                                        Console.ResetColor();
+                                        goto UpdatedCategoryNumber;
+                                    }
+                                    catch (OverflowException e)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("Invalid Category Number! Please Enter the Valid Category Number");
+                                        Console.ResetColor();
+                                        goto UpdatedCategoryNumber;
+                                    }
+
+                                }
+
+                                else if (option == 3)
+                                {
+                                    int UpdatedProdPrice = 0;
+                                UpdatedProdPrice:
+                                    try
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.Write("Enter the Updated Product Price : ");
+                                        Console.ResetColor();
+                                        int updatedProdPrice = int.Parse(Console.ReadLine());
+
+                                        if (updatedProdPrice == 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("Invalid Price! Product Price must not be Zero");
+                                            Console.ResetColor();
+                                            goto UpdatedProdPrice;
+                                        }
+                                        UpdatedProdPrice = updatedProdPrice;
+                                    }
+                                    catch (IsNullExpection e)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(e.Message);
+                                        Console.ResetColor();
+                                        goto UpdatedProdPrice;
+                                    }
+                                    catch (IsValidStringExpection e)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(e.Message);
+                                        Console.ResetColor();
+                                        goto UpdatedProdPrice;
+                                    }
+
+                                    if (ProductDetails[Product_ID] is Product p)
+                                    {
+                                        p.ProductPrice = UpdatedProdPrice;
+                                    }
+
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.WriteLine("Product Price has been Successfully Updated :)");
+                                    Console.ResetColor();
+                                    Console.WriteLine();
+                                }
+
+                                else if (option == 4)
+                                {
+                                    int UpdatedProdStock = 0;
+                                UpdatedStock:
+                                    try
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.Write("Enter the Updated Product Stock : ");
+                                        Console.ResetColor();
+                                        int updatedProdStock = int.Parse(Console.ReadLine());
+
+                                        if (updatedProdStock == 0)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("Invalid Stock! Product Price must not be Zero");
+                                            Console.ResetColor();
+                                            goto UpdatedStock;
+                                        }
+                                        UpdatedProdStock = updatedProdStock;
+                                    }
+                                    catch (IsNullExpection e)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(e.Message);
+                                        Console.ResetColor();
+                                        goto UpdatedStock;
+                                    }
+                                    catch (IsValidStringExpection e)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(e.Message);
+                                        Console.ResetColor();
+                                        goto UpdatedStock;
+                                    }
+
+                                    if (ProductDetails[Product_ID] is Product p)
+                                    {
+                                        p.Stock = UpdatedProdStock;
+                                    }
+
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.WriteLine("Product Stock has been Successfully Updated :)");
+                                    Console.ResetColor();
+                                    Console.WriteLine();
+                                }
+
+                                else if (option == 5)
+                                {
+                                    Console.WriteLine();
+                                    Console.ForegroundColor = ConsoleColor.Magenta;
+                                    Console.WriteLine("Thank You...!!");
+                                    Console.ResetColor();
+                                    Console.WriteLine();
+                                    break;
+                                }
                             }
-                            
+
 
                         }
                         else
@@ -462,6 +634,44 @@ namespace E_Commerce_RealTime_App
                         }
 
                         break;
+
+
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                          You have selected option '3' to Delete thee Products                         ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                                   ------- Here the Products -------                                 ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        _E_CommerceMethods.DisplayAllProducts(ProductDetails);
+
+                        Console.WriteLine();
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("Enter the Product ID for Delete : ");
+                        Console.ResetColor();
+                        int ProductID = int.Parse(Console.ReadLine());
+                        Console.WriteLine();
+
+                        ProductDetails.Remove(ProductID);
+
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"Product ID - {ProductID} has been Successfully Deleted");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        break;
+
+
 
                     case 4:
                         Console.ForegroundColor = ConsoleColor.Magenta;
@@ -479,8 +689,28 @@ namespace E_Commerce_RealTime_App
                         Console.WriteLine();
 
                         _E_CommerceMethods.DisplayAllProducts(ProductDetails);
-                                
+
                         break;
+
+
+
+
+
+
+
+                    case 6:
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Thank You Admin!!!");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        break;
+                }
+
+                if (Choice == 6)
+                {
+                    return;
                 }
 
             }
