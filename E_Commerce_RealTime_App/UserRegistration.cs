@@ -8,11 +8,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using E_Commerce_Console_App_RealTime;
-using E_Commerce_RealTime_App.Exceptions;
 
 namespace E_Commerce_RealTime_App
 {
-    class User
+    class UserPanel
     {
         public int UserId { get; private set; }
         public string UserName { get; private set; }
@@ -20,7 +19,7 @@ namespace E_Commerce_RealTime_App
         public long UserPhone { get; private set; }
         public string UserPassword { get; private set; }
 
-        public User(int UserId, string UserName, string UserEmail, long UserPhone, string UserPassword)
+        public UserPanel(int UserId, string UserName, string UserEmail, long UserPhone, string UserPassword)
         {
             this.UserId = UserId;
             this.UserName = UserName;
@@ -66,7 +65,7 @@ namespace E_Commerce_RealTime_App
         }
     }
 
-    class RegisterUser : User
+    class RegisterUser : UserPanel
     {
         string userRegisterFilePath = @"D:\FileHandling\E_Commerce\User_Registration.txt";
 
@@ -123,7 +122,7 @@ namespace E_Commerce_RealTime_App
                 _E_CommerceMethods.isNullString(userEmail);
                 UserEmail = userEmail;
             }
-            catch (InvalidEmailFormatException e)
+            catch (Exceptions e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);

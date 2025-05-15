@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using E_Commerce_Console_App_RealTime;
 
 namespace E_Commerce_RealTime_App
@@ -88,9 +89,15 @@ namespace E_Commerce_RealTime_App
                         _E_CommerceMethod.AdminLogin();
                         break;
 
+                    case 2:
+                        _E_CommerceMethod.UserLogin();
+                        break;
+
                     case 3:
                         _E_CommerceMethod.UserRegistration();
                         break;
+
+                    
                 }
 
             }

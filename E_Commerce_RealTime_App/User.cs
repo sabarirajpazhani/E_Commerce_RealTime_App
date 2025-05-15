@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace E_Commerce_RealTime_App
 {
-    internal class InvalidEmailFormatException : Exception
+    internal class User
     {
-        public InvalidEmailFormatException(string message) : base(message) { }  
+        public void UserProduct()
+        {
+
+        }
     }
 }
