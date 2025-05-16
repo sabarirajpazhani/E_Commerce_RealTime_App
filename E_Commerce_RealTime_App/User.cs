@@ -468,11 +468,12 @@ namespace E_Commerce_RealTime_App
                                 Console.WriteLine("                                    ------------------------------------                                ");
                                 Console.ResetColor();
                                 Console.WriteLine();
-
+                                valid:
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.Write("If you Want to Place the Order (Y/N) : ");
                                 Console.ResetColor();
                                 Console.WriteLine();
+                                
                                 char decision = char.Parse(Console.ReadLine());
                                 if (decision == 'y' || decision == 'Y')
                                 {
@@ -489,6 +490,7 @@ namespace E_Commerce_RealTime_App
                                         string userName = Console.ReadLine();
                                         _E_CommerceMethods.isNullString(userName);
                                         _E_CommerceMethods.isValidString(userName);
+                                        UserName = userName;
                                     }
                                     catch (IsNullExpection e)
                                     {
@@ -565,7 +567,7 @@ namespace E_Commerce_RealTime_App
                                         goto UserPhone;
                                     }
 
-                                    Console.ForegroundColor= ConsoleColor.Green;
+                                    Console.ForegroundColor = ConsoleColor.Green;
 
                                     Console.WriteLine("Enter Your Address (Don't use Comma    : ");
                                     Console.ResetColor();
@@ -588,14 +590,14 @@ namespace E_Commerce_RealTime_App
 
                                     int PaymentChoice = 0;
 
-                                    payChoice:
+                                payChoice:
                                     try
                                     {
                                         Console.ForegroundColor = ConsoleColor.Green;
                                         Console.Write("Enter the Choice : ");
                                         Console.ResetColor();
 
-                                        int paymentChoice= int.Parse(Console.ReadLine());
+                                        int paymentChoice = int.Parse(Console.ReadLine());
 
                                         if (paymentChoice == 0)
                                         {
@@ -635,7 +637,7 @@ namespace E_Commerce_RealTime_App
                                     int Amount = 0;
                                     string TransactionID = "None";
 
-                                    if(PaymentChoice == 1)
+                                    if (PaymentChoice == 1)
                                     {
                                         Console.WriteLine();
                                         Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -645,7 +647,7 @@ namespace E_Commerce_RealTime_App
 
                                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                                         Console.Write("Enter Card Number (16 Digits): ");
-                                        Console.ResetColor();   
+                                        Console.ResetColor();
                                         string cardNumber = Console.ReadLine();
                                         Console.WriteLine();
 
@@ -657,14 +659,14 @@ namespace E_Commerce_RealTime_App
 
                                         PaymentMethod = "Credit Card";
 
-                                        
+
                                         Console.WriteLine();
 
                                         TransactionID = $"TXN-{DateTime.Now:yyyyddMMHHmmssfff}-{new Random().Next(1000, 9999)}";
 
-                                        OrderProduct orderProduct = new OrderProduct(OrderID, productId, ProductName, productPrice, quantity, totalAmount, UserName, UserEmail, UserPhone, Address, PaymentMethod,TransactionID);
+                                        OrderProduct orderProduct = new OrderProduct(OrderID, productId, ProductName, productPrice, quantity, totalAmount, UserName, UserEmail, UserPhone, Address, PaymentMethod, TransactionID);
 
-                                        orderProduct.DisplayBillOfOrder(OrderID, productId, ProductName, productPrice, quantity, totalAmount, UserName, UserEmail, UserPhone, Address, PaymentMethod,TransactionID);
+                                        orderProduct.DisplayBillOfOrder(OrderID, productId, ProductName, productPrice, quantity, totalAmount, UserName, UserEmail, UserPhone, Address, PaymentMethod, TransactionID);
                                     Amount:
                                         Console.ForegroundColor = ConsoleColor.Yellow;
                                         Console.Write("Enter the Amount : ");
@@ -689,7 +691,7 @@ namespace E_Commerce_RealTime_App
                                         }
 
                                     }
-                                    else if(PaymentChoice == 2)
+                                    else if (PaymentChoice == 2)
                                     {
                                         Console.WriteLine();
                                         Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -711,7 +713,7 @@ namespace E_Commerce_RealTime_App
 
                                         PaymentMethod = "Debit Card";
 
-                                        
+
                                         Console.WriteLine();
 
                                         TransactionID = $"TXN-{DateTime.Now:yyyyddMMHHmmssfff}-{new Random().Next(1000, 9999)}";
@@ -778,7 +780,7 @@ namespace E_Commerce_RealTime_App
 
                                         PaymentMethod = "Net Banking";
 
-                                    
+
                                         Console.WriteLine();
 
                                         TransactionID = $"TXN-{DateTime.Now:yyyyddMMHHmmssfff}-{new Random().Next(1000, 9999)}";
@@ -834,7 +836,7 @@ namespace E_Commerce_RealTime_App
 
                                         PaymentMethod = "UPI";
 
-                                    
+
                                         Console.WriteLine();
 
                                         TransactionID = $"TXN-{DateTime.Now:yyyyddMMHHmmssfff}-{new Random().Next(1000, 9999)}";
@@ -867,7 +869,7 @@ namespace E_Commerce_RealTime_App
                                         }
 
                                     }
-                                    else if(PaymentChoice == 5)
+                                    else if (PaymentChoice == 5)
                                     {
                                         Console.WriteLine();
                                         Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -882,16 +884,16 @@ namespace E_Commerce_RealTime_App
                                         Console.WriteLine(Address);
                                         Console.WriteLine();
 
-                                        decision:
+                                    decision:
                                         Console.ForegroundColor = ConsoleColor.Yellow;
                                         Console.Write("Do you want to continue with this address? (Y) or update the address? (N) :");
                                         Console.ResetColor();
                                         char ch = char.Parse(Console.ReadLine());
-                                        if(ch == 'y' || ch == 'Y')
+                                        if (ch == 'y' || ch == 'Y')
                                         {
                                             OrderedAddress = Address;
                                         }
-                                        else if(ch =='N' || ch == 'n')
+                                        else if (ch == 'N' || ch == 'n')
                                         {
                                             Console.WriteLine();
                                             Console.ForegroundColor = ConsoleColor.Green;
@@ -909,19 +911,21 @@ namespace E_Commerce_RealTime_App
                                             goto decision;
                                         }
 
-                                        Console.WriteLine();    
+                                    phoneNumber:
+                                        Console.WriteLine();
                                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                                         Console.Write("Enter the Phone Number for OTP : ");
                                         Console.ResetColor();
-                                        long phoneNumber = long.Parse(Console.ReadLine()); 
-                                        
-                                        foreach(string i in File.ReadAllLines(RegisterUser.userRegisterFilePath))
+                                        string phoneNumber = Console.ReadLine();
+
+                                        foreach (string i in File.ReadAllLines(RegisterUser.userRegisterFilePath))
                                         {
                                             string[] lines = i.Split(',');
 
-                                            if (lines[1]==UserName && lines[2]==UserEmail && long.Parse(lines[3]) == phoneNumber)
+                                            if (lines.Length >= 4 && lines[1] == UserName && lines[2] == UserEmail && lines[3] == phoneNumber.ToString())
                                             {
-                                                for(int j=5; j >= 0; j--)
+
+                                                for (int j = 5; j >= 0; j--)
                                                 {
                                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                                     Console.Write("                                               Sending OTP : ");
@@ -932,21 +936,29 @@ namespace E_Commerce_RealTime_App
                                                     Thread.Sleep(1000);
                                                 }
 
-                                                Console.WriteLine() ;
+                                                Console.WriteLine();
                                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                                 Console.Write("                                              OTP : ");
                                                 Console.ResetColor();
-                                                Console.ForegroundColor= ConsoleColor.Blue;
+                                                Console.ForegroundColor = ConsoleColor.Blue;
                                                 int opt = new Random().Next(1121, 9879);
-                                                Console.WriteLine(opt);
 
-                                            OTP:
                                                 Console.WriteLine();
+                                            OTP:
                                                 Console.ForegroundColor = ConsoleColor.Green;
                                                 Console.Write("Enter the OTP : ");
-                                                Console.ResetColor();   
-                                                int OTP = int.Parse(Console.ReadLine());
-                                                if(opt == OTP)
+                                                Console.ResetColor();
+                                                string otpInput = Console.ReadLine();
+                                                int OTP;
+                                                if (!int.TryParse(otpInput, out OTP))
+                                                {
+                                                    Console.ForegroundColor = ConsoleColor.Red;
+                                                    Console.WriteLine("Invalid OTP. Please enter numbers only.");
+                                                    Console.ResetColor();
+                                                    goto OTP;
+                                                }
+
+                                                if (opt == OTP)
                                                 {
                                                     Console.WriteLine();
                                                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -957,45 +969,21 @@ namespace E_Commerce_RealTime_App
                                                 else
                                                 {
                                                     Console.ForegroundColor = ConsoleColor.Red;
-                                                    Console.WriteLine("Enter the OTP Correctly");
+                                                    Console.WriteLine("Incorrect OTP. Please try again.");
                                                     Console.ResetColor();
                                                     goto OTP;
                                                 }
 
+                                                break;
                                             }
-                                            else
-                                            {
-                                                Console.ForegroundColor= ConsoleColor.Red;
-                                                Console.WriteLine("Enter the Correct Phone Number");
-                                                Console.ResetColor();
-                                                Console.WriteLine();
-                                            }
-                                            
                                         }
 
-                                        
-                                    //Amount:
-                                    //    Console.ForegroundColor = ConsoleColor.Yellow;
-                                    //    Console.Write("Enter the Amount : ");
-                                    //    Console.ResetColor();
-                                    //    Console.ForegroundColor = ConsoleColor.DarkRed;
-                                    //    Amount = int.Parse(Console.ReadLine());
-                                    //    Console.ResetColor();
-                                    //    if (Amount == totalAmount)
-                                    //    {
-                                    //        Console.WriteLine();
-                                    //        Console.ForegroundColor = ConsoleColor.Blue;
-                                    //        Console.WriteLine("Payment Successful using UPI!");
-                                    //        Console.ResetColor();
-                                    //    }
-                                    //    else
-                                    //    {
-                                    //        Console.ForegroundColor = ConsoleColor.Red;
-                                    //        Console.WriteLine("Enter the Correct Amount");
-                                    //        Console.ResetColor();
-                                    //        Console.WriteLine();
-                                    //        goto Amount;
-                                    //    }
+
+
+
+
+
+
                                         Console.WriteLine();
 
                                         TransactionID = "Nill";
@@ -1006,6 +994,20 @@ namespace E_Commerce_RealTime_App
 
                                     }
 
+                                }
+                                else if(decision =='n' ||decision == 'N')
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Magenta;
+                                    Console.WriteLine("Okay!! Thank You...");
+                                    Console.ResetColor();
+                                    
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Enter the Decisoin Correctly");
+                                    Console.ResetColor();
+                                    goto valid;
                                 }
                             }
                         }

@@ -429,7 +429,7 @@ namespace E_Commerce_RealTime_App
                         try
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write("Entet the Product ID to Update : ");
+                            Console.Write("Enter the Product ID to Update : ");
                             Console.ResetColor();
                             int productId = int.Parse(Console.ReadLine());
 
