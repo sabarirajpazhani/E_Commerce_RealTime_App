@@ -165,6 +165,8 @@ namespace E_Commerce_RealTime_App
 
     internal class User
     {
+
+
         public static string UserOrderFilePath = @"D:\FileHandling\E_Commerce\OrderUserData\UserOrdedData.txt";
 
         public static Hashtable Order = new Hashtable();
@@ -205,7 +207,7 @@ namespace E_Commerce_RealTime_App
                         Console.WriteLine();
                         goto Choice;
                     }
-                    if (choice > 3)
+                    if (choice > 4)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid choice! Choice must be between 1 and 4");
@@ -462,6 +464,12 @@ namespace E_Commerce_RealTime_App
                                 Console.ResetColor();
                                 Console.WriteLine();    
                                 Console.WriteLine($"                                {product.ProductDescription}                                     ");
+
+                                product.Stock = product.Stock - quantity;
+                                if (product.Stock == 0)
+                                {
+                                    Admin.ProductDetails.Remove(productId);
+                                }
 
                                 Console.WriteLine();
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -1006,6 +1014,23 @@ namespace E_Commerce_RealTime_App
                                     goto valid;
                                 }
                             }
+
+                            else if(Choice == 2)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("                                -------- ** Product Card ** --------                                   ");
+                                Console.ResetColor();
+
+
+
+
+
+
+
+
+
+                            }
+
                         }
                         catch (FormatException e)
                         {
@@ -1021,6 +1046,9 @@ namespace E_Commerce_RealTime_App
                             Console.ResetColor();
                             goto ID;
                         }
+
+
+
 
 
                         break;
@@ -1055,10 +1083,29 @@ namespace E_Commerce_RealTime_App
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("-------------------------------------------------------------------------------------------------------");
                         Console.ResetColor();
+                        Console.WriteLine(
+                            $"{"Product ID",-15}" +
+                            $"{"Product Name",-25}" +
+                            $"{"Product Category",-25}" +
+                            $"{"Total Price",-20}" +
+                            $"{"Product Stock",-15}"
+                        );
 
+                        break;
 
+                    case 4:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("Thank You....!! for Purshasing");
+                        Console.ResetColor();
+                        Console.WriteLine();
 
+                        break;
                 } 
+
+                if(Choice == 4)
+                {
+                    break;
+                }
             }
         }
     }
