@@ -271,7 +271,7 @@ namespace E_Commerce_Console_App_RealTime
                         Console.WriteLine();
 
                         User user = new User();
-                        user.UserProduct();
+                        user.UserProduct(UserName, UserEmail);
 
 
                         break;

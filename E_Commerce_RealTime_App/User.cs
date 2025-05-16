@@ -165,11 +165,11 @@ namespace E_Commerce_RealTime_App
 
     internal class User
     {
-        public static string UserOrderFilePath = @"D:\FileHandling\E_Book_App\OrderUserData\UserOrdedData.txt";
+        public static string UserOrderFilePath = @"D:\FileHandling\E_Commerce\OrderUserData\UserOrdedData.txt";
 
         public static Hashtable Order = new Hashtable();
         public static int OrderID = 1000;
-        public void UserProduct()
+        public void UserProduct(string UserNameOrder, string UserEmailOrder)
         {
             while (true)
             {
@@ -910,6 +910,7 @@ namespace E_Commerce_RealTime_App
                                             Console.ResetColor();
                                             goto decision;
                                         }
+                                        PaymentMethod = "Cash on Delivery";
 
                                     phoneNumber:
                                         Console.WriteLine();
@@ -931,18 +932,19 @@ namespace E_Commerce_RealTime_App
                                                     Console.Write("                                               Sending OTP : ");
                                                     Console.ResetColor();
                                                     Console.ForegroundColor = ConsoleColor.Red;
-                                                    Console.WriteLine($" {j} ");
+                                                    Console.Write($"{j}   \r");
                                                     Console.ResetColor();
                                                     Thread.Sleep(1000);
                                                 }
 
                                                 Console.WriteLine();
+                                                Console.WriteLine();
                                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                                Console.Write("                                              OTP : ");
+                                                Console.Write("                                                         OTP : ");
                                                 Console.ResetColor();
                                                 Console.ForegroundColor = ConsoleColor.Blue;
                                                 int opt = new Random().Next(1121, 9879);
-
+                                                Console.WriteLine(opt);
                                                 Console.WriteLine();
                                             OTP:
                                                 Console.ForegroundColor = ConsoleColor.Green;
@@ -977,12 +979,6 @@ namespace E_Commerce_RealTime_App
                                                 break;
                                             }
                                         }
-
-
-
-
-
-
 
                                         Console.WriteLine();
 
@@ -1028,6 +1024,38 @@ namespace E_Commerce_RealTime_App
 
 
                         break;
+
+                    case 2:
+
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                            You have selected option '2' to View the Order                             ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                                Here are the details of your Order                                     ");
+                        Console.WriteLine();
+
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("User Name : ");
+                        Console.ResetColor();   
+                        Console.WriteLine(UserNameOrder);
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("User Eamil : ");
+                        Console.ResetColor();
+                        Console.WriteLine(UserEmailOrder);
+                        Console.WriteLine();
+
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+                        Console.ResetColor();
+
 
 
                 } 
