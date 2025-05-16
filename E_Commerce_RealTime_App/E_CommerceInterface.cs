@@ -235,7 +235,7 @@ namespace E_Commerce_Console_App_RealTime
 
         UserPassword:
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("                                Enter the User Password    : ");
+            Console.Write("                                 Enter the User Password   : ");
             Console.ResetColor();
             UserPassword = Console.ReadLine();
 
