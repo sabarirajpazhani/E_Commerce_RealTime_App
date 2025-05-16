@@ -152,6 +152,14 @@ namespace E_Commerce_RealTime_App
                     Console.ResetColor();
                     goto UserPhone;
                 }
+                if(userPhone.ToString().Length < 10)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("The phone number must contain exactly 10 digits");
+                    Console.ResetColor();
+                    goto UserPhone;
+                }
+
                 UserPhone = userPhone;
 
             }

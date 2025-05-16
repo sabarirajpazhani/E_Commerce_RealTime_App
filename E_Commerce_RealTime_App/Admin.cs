@@ -65,7 +65,7 @@ namespace E_Commerce_RealTime_App
     }
     internal class Admin
     {
-        public static int product_ID = 100;
+        public static int product_ID = 108;
 
         public static Hashtable ProductDetails = new Hashtable()
         {
@@ -151,13 +151,11 @@ namespace E_Commerce_RealTime_App
             }
         };
     
+        public static List<string> Category = new List<string> { "Electronics", "Fashion", "Home & Kitchen", "Beauty & Personal Care", "Health & Wellness", "Books & Stationary", "Sports & Outdoors" };
 
         public void AdminPanel()
         {
             E_CommerceInterface _E_CommerceMethods = new E_CommerceMethods();
-
-            List<string> Category = new List<string> { "Electronics", "Fashion", "Home & Kitchen", "Beauty & Personal Care", "Health & Wellness", "Books & Stationary", "Sports & Outdoors" };
-            
 
 
             while (true)
@@ -779,7 +777,7 @@ namespace E_Commerce_RealTime_App
 
                     case 6:
                         Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("Thank You Admin!!!");
                         Console.ResetColor();
                         Console.WriteLine();
