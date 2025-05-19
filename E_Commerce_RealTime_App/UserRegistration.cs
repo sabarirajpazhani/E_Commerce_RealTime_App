@@ -69,7 +69,7 @@ namespace E_Commerce_RealTime_App
     {
         public static string userRegisterFilePath = @"D:\FileHandling\E_Commerce\User_Registration.txt";
 
-        public static int userID = 100;
+        //public static int userID =  ;
 
         E_CommerceInterface _E_CommerceMethods = new E_CommerceMethods();
 
@@ -83,6 +83,7 @@ namespace E_Commerce_RealTime_App
             string UserEmail = "None";
             long UserPhone = 0;
             string UserPassword = "None";
+            int newUserID = 1;
 
         UserName:
             try
@@ -225,8 +226,13 @@ namespace E_Commerce_RealTime_App
 
 
 
-            userID++;
-            UserId = userID;
+            //++userID;
+            var userData = File.ReadLines(userRegisterFilePath);
+            newUserID = userData.Select(l => int.Parse(l.Split(',')[0])).Max() + 1;
+
+
+
+            UserId = newUserID;
 
 
             RegisterUser NewUser = new(UserId, UserName, UserEmail, UserPhone, UserPassword);
