@@ -755,7 +755,6 @@ namespace E_Commerce_RealTime_App
                         break;
 
 
-
                     case 4:
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("                           You have selected option '4' to View all Products                           ");
@@ -772,6 +771,112 @@ namespace E_Commerce_RealTime_App
                         Console.WriteLine();
 
                         _E_CommerceMethods.DisplayAllProducts(ProductDetails);
+
+                        break;
+
+
+                    case 5:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                             You have selected option '5' to View all Orders                           ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("                                        Here are Overall Orders                                        ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+                        Console.ResetColor();
+
+                        Console.WriteLine(
+                            $"{"Order ID",-12}" +
+                            $"{"User Name",-15}" +
+                            $"{"User Email",-25}" +
+                            $"{"User Phone",-15}" +
+                            $"{"Product ID",-15}" +
+                            $"{"Product Name",-25}" +
+                            $"{"Product Price",-15}" +
+                            $"{"Quantity",-10}" +
+                            $"{"Total Price",-14}" +
+                            $"{"Payment Mode",-20}" +
+                            $"{"Transaction ID",-28}" +
+                            $"{"Order Date",-15}"
+                        );
+
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+                        Console.ResetColor();
+
+                        foreach (string i in File.ReadAllLines(User.UserOrderFilePath))
+                        {
+                            string[] lines = i.Split(',');
+
+                            if (lines.Length < 14) continue; 
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{lines[0],-12}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write($"{lines[7],-15}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{lines[8],-25}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write($"{lines[9],-15}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{lines[1],-15}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write($"{lines[2],-25}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{lines[3],-15}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write($"{lines[4],-10}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{lines[5],-14}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write($"{lines[11],-20}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{lines[12],-28}");
+                            Console.ResetColor();
+
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine($"{lines[13],-15}");
+                            Console.ResetColor();
+                        }
+
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+                        Console.ResetColor();
+                        Console.WriteLine();
+
 
                         break;
 
