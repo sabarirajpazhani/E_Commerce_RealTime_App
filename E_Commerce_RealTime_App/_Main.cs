@@ -97,7 +97,7 @@ namespace E_Commerce_RealTime_App
                         _E_CommerceMethod.UserRegistration();
                         break;
 
-                    
+
                 }
 
             }

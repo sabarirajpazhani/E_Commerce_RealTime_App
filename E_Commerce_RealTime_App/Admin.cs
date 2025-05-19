@@ -150,7 +150,7 @@ namespace E_Commerce_RealTime_App
                 )
             }
         };
-    
+
         public static List<string> Category = new List<string> { "Electronics", "Fashion", "Home & Kitchen", "Beauty & Personal Care", "Health & Wellness", "Books & Stationary", "Sports & Outdoors" };
 
         public void AdminPanel()

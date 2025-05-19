@@ -23,9 +23,9 @@ namespace E_Commerce_RealTime_App
         {
             this.UserId = UserId;
             this.UserName = UserName;
-            this.UserEmail = UserEmail; 
-            this.UserPhone = UserPhone; 
-            this.UserPassword = UserPassword;   
+            this.UserEmail = UserEmail;
+            this.UserPhone = UserPhone;
+            this.UserPassword = UserPassword;
         }
 
         public void DisplayRegistedUser(int UserId, string UserName, string UserEmail, long UserPhone, string UserPassword)
@@ -70,11 +70,11 @@ namespace E_Commerce_RealTime_App
         public static string userRegisterFilePath = @"D:\FileHandling\E_Commerce\User_Registration.txt";
 
         public static int userID = 100;
-        
+
         E_CommerceInterface _E_CommerceMethods = new E_CommerceMethods();
 
         public RegisterUser() : base(0, "", "", 0, "") { }
-        public RegisterUser(int UserId, string UserName, string UserEmail, long UserPhone, string UserPassword) : base(UserId, UserName, UserEmail, UserPhone, UserPassword){ }
+        public RegisterUser(int UserId, string UserName, string UserEmail, long UserPhone, string UserPassword) : base(UserId, UserName, UserEmail, UserPhone, UserPassword) { }
 
         public void Register()
         {
@@ -82,9 +82,9 @@ namespace E_Commerce_RealTime_App
             string UserName = "None";
             string UserEmail = "None";
             long UserPhone = 0;
-            string UserPassword = "None";   
+            string UserPassword = "None";
 
-            UserName:
+        UserName:
             try
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -130,7 +130,7 @@ namespace E_Commerce_RealTime_App
                 goto UserEmail;
 
             }
-            catch(IsNullExpection e)
+            catch (IsNullExpection e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Email is required. The field cannot be Empty");
@@ -152,7 +152,7 @@ namespace E_Commerce_RealTime_App
                     Console.ResetColor();
                     goto UserPhone;
                 }
-                if(userPhone.ToString().Length < 10)
+                if (userPhone.ToString().Length < 10)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("The phone number must contain exactly 10 digits");
@@ -163,7 +163,7 @@ namespace E_Commerce_RealTime_App
                 UserPhone = userPhone;
 
             }
-            catch(FormatException e)
+            catch (FormatException e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Please enter a Valid Phone Number");
@@ -182,7 +182,7 @@ namespace E_Commerce_RealTime_App
                     Console.WriteLine("User already exists. Please proceed to user login");
                     Console.ResetColor();
 
-                    Console.WriteLine();    
+                    Console.WriteLine();
                     Console.WriteLine("Press any Key...");
                     Console.ReadKey(true);
                     return;
@@ -204,7 +204,7 @@ namespace E_Commerce_RealTime_App
             Console.ResetColor();
             string ConfirmationPass = Console.ReadLine();
 
-            if(password == ConfirmationPass)
+            if (password == ConfirmationPass)
             {
                 UserPassword = ConfirmationPass;
 
@@ -222,14 +222,14 @@ namespace E_Commerce_RealTime_App
                 goto password;
             }
 
-            
+
 
 
             userID++;
             UserId = userID;
 
 
-            RegisterUser NewUser = new (UserId, UserName, UserEmail, UserPhone, UserPassword);
+            RegisterUser NewUser = new(UserId, UserName, UserEmail, UserPhone, UserPassword);
             NewUser.DisplayRegistedUser(UserId, UserName, UserEmail, UserPhone, UserPassword);
 
             string userDetails = $"{UserId},{UserName},{UserEmail},{UserPhone},{UserPassword}";

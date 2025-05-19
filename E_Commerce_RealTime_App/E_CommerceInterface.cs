@@ -168,7 +168,7 @@ namespace E_Commerce_Console_App_RealTime
         public void UserLogin()
         {
 
-            string userFilePath = @"D:\FileHandling\E_Commerce\User_Registration.txt";
+            string userFilePath = @"D:\File_Handling\E-Commerce\User_Registration.txt";
 
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -176,6 +176,7 @@ namespace E_Commerce_Console_App_RealTime
             Console.ResetColor();
             Console.WriteLine();
 
+            int UserID = 0;
             string UserName = "None";
             string UserEmail = "None";
             string UserPassword = "None";
@@ -255,6 +256,7 @@ namespace E_Commerce_Console_App_RealTime
 
                 if (dataAuth[1] == UserName && dataAuth[2] == UserEmail)
                 {
+                    UserID = int.Parse(dataAuth[0]);
                     userFound = true;
 
                     if (dataAuth[4] == UserPassword)
@@ -271,7 +273,7 @@ namespace E_Commerce_Console_App_RealTime
                         Console.WriteLine();
 
                         User user = new User();
-                        user.UserProduct(UserName, UserEmail);
+                        user.UserProduct(UserID, UserName, UserEmail);
 
 
                         break;
